@@ -1,0 +1,11 @@
+#comandos executados no terminal pricipal
+
+```Cria o projeto
+react-native init exercicios```
+
+```Install dependencias
+npm i```
+
+```Executa
+react-native run-android```
+
