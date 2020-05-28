@@ -7,6 +7,8 @@ import {
     Image,
     Dimensions
 } from 'react-native'
+
+import Colors from '../constants/Colors'
 import Post from './Post'
 
 class Category extends Component {
@@ -25,7 +27,8 @@ const styles = StyleSheet.create({
         flexDirection:"column"
     },
     category: {
-        color: "#f00",
+        fontFamily: 'AvenirNext-Regular',
+        color: Colors.textPrimary,
         fontWeight: 'bold',
         fontSize: 24,
         margin: 20

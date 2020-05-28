@@ -54,40 +54,47 @@ const styles = StyleSheet.create({
         flexDirection:"column"
     },
     postContainer: {
-        flexDirection:"row"
+        flexDirection: "row",
+        backgroundColor: '#fff',
+        borderRadius: 5,
+        margin: 10,
+        marginTop: 0,
     },
     containerText: {
-        width: Dimensions.get('window').width * 0.8,
-        flexDirection: "column",  
+        flex: 7,
+        flexDirection: "column",
+        marginTop: 10,
+        marginLeft: 10,
+        margin: 5,
     },
     containerImg: {
-        width: Dimensions.get('window').width * 0.2,
-        height: Dimensions.get('window').width * 0.2,
-        paddingRight: 20
+        flex: 3,
+        //backgroundColor: '#f0e',
     },
     contaierSubText: {
         flexDirection: "row",
         justifyContent: "flex-end" 
     },
     title: {
-        fontSize: 18,
+        fontSize: 15,
+        fontFamily: 'AvenirNext-HeavyItalic',
         fontWeight: "bold",
-        marginLeft: 20
+        /*textAlign: "justify",*/
     },
     advertiser: {
         marginRight: 10,
-        color: '#ddd'
-
+        color: '#647586'
     },
     date: {
         marginRight: 10,
-        color: '#ddd'
-
+        color: '#757584'
     },
     image: {
-        width: '100%',
-        height: '100%',
-        resizeMode: 'contain'
+        width: (Dimensions.get('window').width * 0.3) -10,
+        height: (Dimensions.get('window').width * 0.3) -20,
+        resizeMode: 'cover',
+        borderTopRightRadius: 5,
+        borderBottomRightRadius: 5,
     }
 })
 export default function(props) {
