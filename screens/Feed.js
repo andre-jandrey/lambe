@@ -1,66 +1,22 @@
 import React, { Component } from 'react'
 import Header from '../components/Header'
+import { connect } from 'react-redux'
 import Category from '../components/Category'
 import { StyleSheet, FlatList, View } from 'react-native'
-
+import { fetchPosts } from '../store/actions/post'
 
 
 class Feed extends Component {
-    state = {
-        categories: [{
-            id: Math.random(),
-            name: 'Tecnologia',
-            posts: [
-                {
-                    image: require('../assets/imgs/aula.jpg'),
-                    title:'Estudo aborda o uso da tecnologia na educação',
-                    date: '28/05/2020',
-                    advertiser:'fonte da noticia'
-                },
-                {
-                    image: require('../assets/imgs/servicos.jpg'),
-                    title:'App de busca de serviços cresce 35% na quarentena',
-                    date: '28/05/2020',
-                    advertiser:'fonte da noticia'
-                },
-                {
-                    image: require('../assets/imgs/internet.png'),
-                    title:'Internet: Pela primeira vez, mais da metade das áres rurais tem...',
-                    date: '28/05/2020',
-                    advertiser:'fonte da noticia'
-                }
-            ]
-        },
-        {
-            id: Math.random(),
-            name: 'Agricultura',
-            posts: [
-                {
-                    image: require('../assets/imgs/fence.jpg'),
-                    title:'Seca atinge a região oeste do Paraná',
-                    date: '28/05/2020',
-                    advertiser:'fonte da noticia'
-                },
-                {
-                    image: require('../assets/imgs/fence.jpg'),
-                    title:'Título da notícia 2 categoria 2',
-                    date: '28/05/2020',
-                    advertiser:'fonte da noticia'
-                },
-                {
-                    image: require('../assets/imgs/fence.jpg'),
-                    title:'Título da notícia 3 categoria 2',
-                    date: '28/05/2020',
-                    advertiser:'fonte da noticia'
-                }
-            ]
-        }]
+
+    componentDidMount = () => {
+        console.log('vai coisar')
+        this.props.onFetchPosts()
     }
 
     render() {
         return (
             <View style={styles.container}>
-                <FlatList data={this.state.categories}
+                <FlatList data={this.state.posts}
                     keyExtractor={item => `${item.id}`}
                     renderItem={({ item }) => <Category key={item.id} {...item} />}
                     />
@@ -74,5 +30,21 @@ const styles = StyleSheet.create({
         flex: 1
     },
 })
-    
-export default Feed
+
+const mapStateToProps = ({ posts }) => {
+    console.log('mapState')
+    console.log(posts)
+    return {
+        posts: posts.posts
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    console.log('mapDispatch')
+
+    return {
+        onFetchPosts: () =>  dispatch(fetchPosts())
+    }
+  }
+//export default Feed
+export default connect(mapStateToProps, mapDispatchToProps) (Feed)

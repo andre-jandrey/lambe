@@ -2,6 +2,8 @@ import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
 
 import Page1 from '../screens/SearchScreen'
+import Login from '../screens/loginScreen'
+import Settings from '../screens/SettingsScreen'
 import About from '../screens/About'
 import PostDetails from '../screens/PostDetails'
 
@@ -34,6 +36,16 @@ export default function AppStackScreen() {
                 name="TopLinks"
                 component={TopLinks}
                 options={{ headerShown: false }}
+            />
+            <AppStack.Screen
+                name="Login"
+                component={Login}
+                options={{ headerShown: false, color: '#000' }}
+            />
+            <AppStack.Screen
+                name="Settings"
+                component={Settings}
+                options={{ headerShown: false, color: '#000' }}
             />
             <AppStack.Screen
                 name="Page 1"

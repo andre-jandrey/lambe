@@ -1,6 +1,9 @@
+import React from 'react'
+import { Provider } from 'react-redux'
+import storeConfig from './store/storeConfig'
+
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import * as React from 'react';
 import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { AppLoading } from 'expo';
 import { useFonts } from '@use-expo/font';
@@ -8,7 +11,9 @@ import { useFonts } from '@use-expo/font';
 import useCachedResources from './hooks/useCachedResources';
 import LinkingConfiguration from './navigation/LinkingConfiguration';
 import AppStack from './navigation/app.routes';
+import axios from 'axios'
 
+axios.defaults.baseURL = 'https://news-7445a.firebaseio.com/'
 
 const Stack = createStackNavigator();
 
@@ -28,16 +33,20 @@ export default function App(props) {
     'AvenirNext-UltraLight': require('./assets/fonts/AvenirNext-UltraLight.ttf'),
     'AvenirNext-UltraLightItalic': require('./assets/fonts/AvenirNext-UltraLightItalic.ttf'),
   });
+  const store = storeConfig()
+
   if (!fontsLoaded) {
     return <AppLoading />
   } else {
     return (
+      <Provider store={store}>
       <View style={styles.container}>
         {Platform.OS === 'ios' && <StatusBar barStyle="dark-content" />}
         <NavigationContainer linking={LinkingConfiguration}>
             <AppStack />
         </NavigationContainer>
-      </View>
+        </View>
+        </Provider>
     );
   }
 }

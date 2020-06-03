@@ -1,14 +1,62 @@
-import React from 'react';
-import { View, Button, Text } from 'react-native';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { logout } from '../store/actions/user'
 
-const Settings = ({ navigation }) => (
-  <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-    <Text>Página de configuração</Text>
-  </View>
-);
+import { View, StyleSheet, Text } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
-Settings.navigationOptions = {
-  title: 'Home',
+import * 
+
+class Settings extends Component {
+  logout = () => {
+    this.props.onLogout()
+    this.props.navigation.navigate('Login')
+  }
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.nickname}>{ this.props.name }</Text>
+        <Text style={styles.nickname}>{ this.props.email }</Text>
+
+        <TouchableOpacity onPress={this.logout} style={styles.button}>
+          <Text style={styles.buttonText}>Sair</Text>
+        </TouchableOpacity>
+      </View>
+    )
+  }
 }
 
-export default Settings;
+const styles = StyleSheet.create({
+  container: {
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'center'
+  },
+  button: {
+      marginTop: 30,
+      padding: 10,
+      backgroundColor: '#4286f4'
+  },
+  buttonText: {
+      fontSize: 20,
+      color: '#fff'
+  },
+  nickname: {
+    fontSize: 20,
+    color: '#f00'
+  }
+})
+const mapStateToProps = ({ user }) => {
+  return {
+    email: user.email,
+    name: user.name,
+  }
+}
+const mapDispatchToProps = dispatch => {
+  return {
+      onLogout: () => dispatch(logout())
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Settings)
+//export default Settings;

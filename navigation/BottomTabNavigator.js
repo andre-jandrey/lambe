@@ -5,6 +5,7 @@ import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/Feed';
 import SearchScreen from '../screens/SearchScreen';
 import Settings from '../screens/SettingsScreen';
+import Login from '../screens/loginScreen';
 
 import TopLinks from './top.routes';
 
@@ -52,8 +53,8 @@ export default function BottomTabNavigator({ navigation, route }) {
         }}
       />
       <BottomTab.Screen
-        name="settings"
-        component={Settings}
+        name="Login"
+        component={Login}
         options={{
           tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-settings" />,
         }}
@@ -68,9 +69,11 @@ function getHeaderTitle(route) {
   switch (routeName) {
     case 'Home':
       return 'Notícias';
-    case 'Links':
-      return 'Links to learn more';
-      case 'TopLinks':
-        return 'TopLinks to learn more';
+    case 'Login':
+      return 'Login';
+    case 'Search':
+      return 'Search to learn more';
+    case 'settings':
+      return 'settings to learn more';
   }
 }
